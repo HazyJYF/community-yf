@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>JIYUANFENG COMMUMITY</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <!-- 自定义样式-->
+    <!-- 自定义css-->
     <link rel="stylesheet" href="/css/community.css">
+
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="/js/bootstrap.min.js"></script>
 
@@ -18,8 +19,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Community</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -43,11 +43,13 @@
 
                 <li class="dropdown" th:if="${session.user != null}">
                     <a href="/pushlish">发布问题</a></li>
+            </ul>
+
 
                 <li class="dropdown" th:if="${session.user != null}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false" th:text="${session.user.getName()}"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                       aria-expanded="false" th:text="${session.user.getName()}"><span class="caret" ></span></a>
+                    <ul class="dropdown-menu" >
                         <li><a href="#">消息中心</a></li>
                         <li><a href="#">个人资料</a></li>
                         <li><a href="#">退出登录</a></li>
@@ -56,37 +58,50 @@
 
                 <li class="dropdown" th:if="${session.user != null}">
                     <a href="http://localhost:8080/signDown">退出登录</a></li>
-
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-    <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
-    <hr>
-    <div class="media" th:each="question : ${questions}" >
-        <div class="media-left">
-            <a href="#">
-                <img class="media-object img-rounded" th:src= "${question.user.avatarUrl}">
-            </a>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
+
+            <form action="/pushlish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题 (简单扼要)</label>
+                    <input type="text" class="form-control" id="title" name = "title" placeholder="问题标题..."
+                           th:value="${title}">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">问题补充 (必填,请参照右侧提示)</label>
+                    <textarea class="form-control" id="description" name = "description" cols="30" rows="10"
+                              th:text="${description}"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" id="tag" name = "tag" placeholder="添加标签,以,隔开"
+                           th:value="${tag}">
+                </div>
+
+                <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error != null}"></div>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+
+            </form>
         </div>
-        <div class="media-body">
-            <h4 class="media-heading" th:text="${question.getTitle()}"></h4>
-            <span th:text="${question.getDescription()}"></span><br>
-            <span class="text-desc">
-                <span th:text="${question.getCommentCount()}"></span>个回复;
-                <span th:text="${question.getViewCount()}"></span>个浏览;
-                创建于<span th:text="${#dates.format(question.getGmtCreate(),'yyyy-MM-dd HH-mm')}"></span></span>
+
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>问题发起指南</h3>
+            问题标签:请用精简的语言描述您发布的问题<br>
+            问题补充:详细补充您的问题内容,并确保问题描述清楚直观,并提供一些相关的资料<br>
+            选择标签:选择一个或多个合适的标签,并用逗号隔开,每个标签不超过10个字<br>
         </div>
+
     </div>
-
 </div>
-
-<div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-    <h3>热门话题</h3>
-    等待通知的一天,非常的枯燥
-</div>
-
 </body>
 </html>
