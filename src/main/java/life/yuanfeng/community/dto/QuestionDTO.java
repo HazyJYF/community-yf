@@ -1,5 +1,12 @@
 package life.yuanfeng.community.dto;
 
+/**
+ * QuestionService class
+ *
+ * @author jiyf
+ * @create 2019-09-07 17:05
+ **/
+
 import life.yuanfeng.community.model.User;
 
 public class QuestionDTO {

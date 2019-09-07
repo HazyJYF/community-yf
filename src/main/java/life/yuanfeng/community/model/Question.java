@@ -1,5 +1,12 @@
 package life.yuanfeng.community.model;
 
+/**
+ * QuestionService class
+ *
+ * @author jiyf
+ * @create 2019-09-07 17:05
+ **/
+
 public class Question {
     private Integer id;
     private String title;

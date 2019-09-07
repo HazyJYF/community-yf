@@ -7,6 +7,13 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * QuestionService class
+ *
+ * @author jiyf
+ * @create 2019-09-07 17:05
+ **/
+
 @Mapper
 public interface QuestionMapper {
 

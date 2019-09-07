@@ -12,6 +12,13 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * QuestionService class
+ *
+ * @author jiyf
+ * @create 2019-09-07 17:05
+ **/
+
 @Service
 public class QuestionService {
 

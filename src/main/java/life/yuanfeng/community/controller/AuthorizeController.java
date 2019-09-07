@@ -1,5 +1,12 @@
 package life.yuanfeng.community.controller;
 
+/**
+ * QuestionService class
+ *
+ * @author jiyf
+ * @create 2019-09-07 17:05
+ **/
+
 import life.yuanfeng.community.dto.AccessTokenDTO;
 import life.yuanfeng.community.dto.GithubUser;
 import life.yuanfeng.community.mapper.UserMapper;
